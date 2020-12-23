@@ -1,5 +1,5 @@
 package letterGrade;
-import java.util.Scanner;
+import java.io.*;
 
 public class letterGrade {
 
@@ -21,19 +21,20 @@ public class letterGrade {
 	}
 	
 	public static void main(String[] args) {
-		int num1, num2, num3;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please input three score(divide with space white)");
-        if(scanner.hasNextInt()) {        	
-        	num1 = scanner.nextInt();
-        	num2 = scanner.nextInt();
-        	num3 = scanner.nextInt();
-        	letterGrade g = new letterGrade();
-        	System.out.println("First score is: " + num1 + ", Grade:" + g.ScoreGrade(num1));
-        	System.out.println("Second score is: " + num2 + ", Grade:" + g.ScoreGrade(num2));
-        	System.out.println("Third score is: " + num3 + ", Grade:" + g.ScoreGrade(num3));
-        }
-        scanner.close();
+		int score;
+		System.out.print("Enetr the score = ");
+		try {
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		score = Integer.parseInt(br.readLine());
+		letterGrade g = new letterGrade();
+		 char grade = g.ScoreGrade(score);
+		 System.out.println("The grade of " + score + " is " + grade);
+		} catch (NumberFormatException ex) {
+		System.out.println("Not an integer!");
+		} catch (IOException e) {
+		e.printStackTrace();
+		}
 	}
 	
 }
